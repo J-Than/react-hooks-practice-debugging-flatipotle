@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Side from "./Side";
 import burritoImg from "../images/burrito-bowl.jpg";
 
 function Order(props) {
@@ -37,7 +38,7 @@ function Order(props) {
         )}
 
         {/* this is just a shortcut to writing state.isClicked ? <Side sides={props.sides} /> : null */}
-        {state.isClicked && <Side sides={props.sides} />}
+        {isClicked && <Side sides={props.sides} />}
       </div>
     </div>
   );
