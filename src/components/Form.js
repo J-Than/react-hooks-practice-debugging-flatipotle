@@ -11,22 +11,20 @@ const DEFAULT_STATE = {
   sides: [],
 };
 
-function Form() {
+function Form({ onAdd }) {
   const [formState, setFormState] = useState(DEFAULT_STATE);
 
-  function handleSubmit(event, props) {
-    event.preventDefault();
-    props.addOrder(formState);
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAdd(formState);
 
-    setFormState({
-      ...DEFAULT_STATE,
-    });
-    event.target.reset();
+    setFormState({...DEFAULT_STATE});
+    e.target.reset();
   }
 
-  function handleChange(event) {
-    const itemType = event.target.name;
-    const item = event.target.value;
+  function handleChange(e) {
+    const itemType = e.target.name;
+    const item = e.target.value;
 
     if (formState[itemType].includes(item)) {
       setFormState({
@@ -36,7 +34,7 @@ function Form() {
     } else {
       setFormState({
         ...formState,
-        [itemType]: formState[itemType].concat(item),
+        [itemType]: [...formState[itemType],item]
       });
     }
   }
